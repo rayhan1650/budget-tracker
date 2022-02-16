@@ -16,28 +16,29 @@
   <body>
     <main>
       <section class="container my-5">
-        <h2 class="text-center text-primary">Budget Tracker</h2>
+        <h2 class="text-center text-primary mb-4">Budget Tracker</h2>
         <div class="row">
           <div class="col-md-7">
             <img class="img-fluid" src="images/budget.jpg" alt="budget image" />
           </div>
           <div class="col-md-5 text-center">
-            <h5>Income</h5>
+            <h5 class="mt-2">Income</h5>
             <label for="income">Income:</label>
             <input type="text" id="income" name="income" />
-            <h5>Expenses</h5>
-            <div>
-              <label for="food">Food:</label>
-              <input type="text" id="food" name="food" />
-            </div>
-            <div>
-              <label for="rent">Rent:</label>
-              <input type="text" id="rent" name="rent" />
-            </div>
-            <div>
-              <label for="clothes">Clothes:</label>
-              <input type="text" id="clothes" name="clothes" />
-            </div>
+
+            <h5 class="mt-3">Expenses</h5>
+            <label for="food">Food:</label>
+            <input type="text" id="food" name="food" />
+            <br />
+            <label for="rent">Rent:</label>
+            <input class="my-3" type="text" id="rent" name="rent" />
+            <br />
+            <label for="clothes">Clothes:</label>
+            <input type="text" id="clothes" name="clothes" />
+            <br /><br />
+            <button class="btn btn-primary">Calculate</button>
+            <h6 class="mt-3">Total Expenses: <span>0</span></h6>
+            <h6 class="my-3">Balance: <span>0</span></h6>
           </div>
         </div>
       </section>
