@@ -52,7 +52,7 @@ function calculateSaving(){
         errorHandler("Please reload page & enter positive number value in all input fields.");
     }
     else{
-        const savingAmount=incomeInputValue*(saveInputValue/100);
+        const savingAmount=parseInt(incomeInputValue*(saveInputValue/100));
         const setSavingAmount=document.getElementById('saving-amount');
         setSavingAmount.innerText=savingAmount;       
         remainingBalance(savingAmount);
