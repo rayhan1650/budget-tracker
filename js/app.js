@@ -9,19 +9,33 @@ function totalExpense(){
     const foodInputValue=parseInt(foodInput.value); 
     const rentInputValue=parseInt(rentInput.value); 
     const clothesInputValue=parseInt(clothesInput.value);
-    const totalExp= foodInputValue+rentInputValue+clothesInputValue;
-    const setTotalExpense=document.getElementById('total-expenses');
-    setTotalExpense.innerText=totalExp;
-    calculateBalance(totalExp);
+    const incomeInputValue=parseInt(incomeInput.value);
+    if(isNaN(foodInputValue)||isNaN(rentInputValue)||isNaN(clothesInputValue)||isNaN(incomeInputValue)){
+        errorHandler('Please reload page & enter number value in all input fields');
+    }
+    else{
+        const totalExp= foodInputValue+rentInputValue+clothesInputValue;
+        const setTotalExpense=document.getElementById('total-expenses');
+        setTotalExpense.innerText=totalExp;
+        calculateBalance(totalExp);
+    }
+    
 }
 
 //balance calculation
 function calculateBalance(totalExp){ 
     const incomeInputValue=parseInt(incomeInput.value);
     balance= incomeInputValue-totalExp;
-    const setBalance=document.getElementById('balance');
-    setBalance.innerText=balance;
+    if(balance<0){
+        errorHandler("Expense can't be greater than income.Please reload page & input again.");
+    }
+    else{
+        const setBalance=document.getElementById('balance');
+        setBalance.innerText=balance;
+    }       
 }
+    
+
 
 //saving calculation
 function calculateSaving(){
@@ -50,3 +64,10 @@ document.getElementById('btn-calculate').addEventListener('click',function(){
 document.getElementById('btn-saving').addEventListener('click',function(){
     calculateSaving();   
 });
+
+//error handler
+function errorHandler(message){
+    const errorMessage=document.getElementById('error-message');
+    errorMessage.innerText=message;
+    errorMessage.style.display='block';
+}
