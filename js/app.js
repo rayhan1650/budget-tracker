@@ -27,13 +27,14 @@ function totalExpense(){
 
 //balance calculation
 function calculateBalance(totalExp){ 
+    const setBalance=document.getElementById('balance');
     const incomeInputValue=parseInt(incomeInput.value);
     balance= incomeInputValue-totalExp;
     if(balance<0){
+        setBalance.innerText=0;
         errorHandler("Expense can't be greater than income.Please reload page & input again.");
     }
-    else{
-        const setBalance=document.getElementById('balance');
+    else{     
         setBalance.innerText=balance;
     }       
 }
@@ -62,12 +63,13 @@ function calculateSaving(){
 
 //remaining balance calculation
 function remainingBalance(savingAmount){
+    const setRemainingBalance=document.getElementById('remaining-balance');
     const remainBalance=balance-savingAmount;
     if(remainBalance<0){
+        setRemainingBalance.innerText=0;
         errorHandler("Saving can't be greater than balance.Please reload page & input saving again.");
     }
-    else{       
-        const setRemainingBalance=document.getElementById('remaining-balance');
+    else{              
         setRemainingBalance.innerText=remainBalance;
     }    
 }
