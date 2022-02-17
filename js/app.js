@@ -2,6 +2,7 @@ const foodInput=document.getElementById('food');
 const rentInput=document.getElementById('rent');
 const clothesInput=document.getElementById('clothes');
 const incomeInput=document.getElementById('income');
+let balance=0;
 
 // expenses function 
 function totalExpense(){
@@ -17,7 +18,7 @@ function totalExpense(){
 //balance calculation
 function calculateBalance(totalExp){ 
     const incomeInputValue=parseInt(incomeInput.value);
-    const balance= incomeInputValue-totalExp;
+    balance= incomeInputValue-totalExp;
     const setBalance=document.getElementById('balance');
     setBalance.innerText=balance;
 }
@@ -30,6 +31,14 @@ function calculateSaving(){
     const savingAmount=incomeInputValue*(saveInputValue/100);
     const setSavingAmount=document.getElementById('saving-amount');
     setSavingAmount.innerText=savingAmount;
+    remainingBalance(savingAmount);
+}
+
+//remaining balance calculation
+function remainingBalance(savingAmount){
+    const remainBalance=balance-savingAmount;
+    const setRemainingBalance=document.getElementById('remaining-balance');
+    setRemainingBalance.innerText=remainBalance;
 }
 
 // calculate button 
@@ -39,6 +48,5 @@ document.getElementById('btn-calculate').addEventListener('click',function(){
 
 // savings buttons
 document.getElementById('btn-saving').addEventListener('click',function(){
-    calculateSaving();
-    
+    calculateSaving();   
 });
