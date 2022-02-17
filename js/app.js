@@ -10,7 +10,10 @@ function totalExpense(){
     const rentInputValue=parseInt(rentInput.value); 
     const clothesInputValue=parseInt(clothesInput.value);
     const incomeInputValue=parseInt(incomeInput.value);
-    if(isNaN(foodInputValue)||isNaN(rentInputValue)||isNaN(clothesInputValue)||isNaN(incomeInputValue)||foodInputValue<0||rentInputValue<0||clothesInputValue<0||incomeInputValue<0){
+    if(isNaN(foodInputValue)||isNaN(rentInputValue)||isNaN(clothesInputValue)||isNaN(incomeInputValue)){
+        errorHandler('Please reload page & enter number value in all input fields');
+    }
+    else if(foodInputValue<0||rentInputValue<0||clothesInputValue<0||incomeInputValue<0){
         errorHandler('Please reload page & enter positive number value in all input fields');
     }
     else{
@@ -42,11 +45,16 @@ function calculateSaving(){
     const incomeInputValue=parseInt(incomeInput.value);
     const saveInput=document.getElementById('save');
     const saveInputValue=parseInt(saveInput.value);
-    if(isNaN(saveInputValue)||isNaN(incomeInputValue)||saveInputValue<0){
-        errorHandler("Please reload page & enter positive number value in all input fields.")
+    if(isNaN(saveInputValue)||isNaN(incomeInputValue)){
+        errorHandler("Please reload page & enter number value in all input fields.");
+    }
+    else if(saveInputValue<0){
+        errorHandler("Please reload page & enter positive number value in all input fields.");
     }
     else{
-        const savingAmount=incomeInputValue*(saveInputValue/100);       
+        const savingAmount=incomeInputValue*(saveInputValue/100);
+        const setSavingAmount=document.getElementById('saving-amount');
+        setSavingAmount.innerText=savingAmount;       
         remainingBalance(savingAmount);
     }
     
@@ -56,11 +64,9 @@ function calculateSaving(){
 function remainingBalance(savingAmount){
     const remainBalance=balance-savingAmount;
     if(remainBalance<0){
-        errorHandler("Saving can't be greater than balance.Please reload page & input again.");
+        errorHandler("Saving can't be greater than balance.Please reload page & input saving again.");
     }
-    else{
-        const setSavingAmount=document.getElementById('saving-amount');
-        setSavingAmount.innerText=savingAmount;
+    else{       
         const setRemainingBalance=document.getElementById('remaining-balance');
         setRemainingBalance.innerText=remainBalance;
     }    
