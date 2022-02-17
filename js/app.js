@@ -74,11 +74,15 @@ function remainingBalance(savingAmount){
 
 // calculate button 
 document.getElementById('btn-calculate').addEventListener('click',function(){
+    const errorMessage=document.getElementById('error-message');
+    errorMessage.style.display='none';
     totalExpense();   
 });
 
 // savings buttons
 document.getElementById('btn-saving').addEventListener('click',function(){
+    const errorMessage=document.getElementById('error-message');
+    errorMessage.style.display='none';
     calculateSaving();   
 });
 
