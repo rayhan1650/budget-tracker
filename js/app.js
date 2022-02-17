@@ -10,8 +10,8 @@ function totalExpense(){
     const rentInputValue=parseInt(rentInput.value); 
     const clothesInputValue=parseInt(clothesInput.value);
     const incomeInputValue=parseInt(incomeInput.value);
-    if(isNaN(foodInputValue)||isNaN(rentInputValue)||isNaN(clothesInputValue)||isNaN(incomeInputValue)){
-        errorHandler('Please reload page & enter number value in all input fields');
+    if(isNaN(foodInputValue)||isNaN(rentInputValue)||isNaN(clothesInputValue)||isNaN(incomeInputValue)||foodInputValue<0||rentInputValue<0||clothesInputValue<0||incomeInputValue<0){
+        errorHandler('Please reload page & enter positive number value in all input fields');
     }
     else{
         const totalExp= foodInputValue+rentInputValue+clothesInputValue;
@@ -42,17 +42,28 @@ function calculateSaving(){
     const incomeInputValue=parseInt(incomeInput.value);
     const saveInput=document.getElementById('save');
     const saveInputValue=parseInt(saveInput.value);
-    const savingAmount=incomeInputValue*(saveInputValue/100);
-    const setSavingAmount=document.getElementById('saving-amount');
-    setSavingAmount.innerText=savingAmount;
-    remainingBalance(savingAmount);
+    if(isNaN(saveInputValue)||isNaN(incomeInputValue)||saveInputValue<0){
+        errorHandler("Please reload page & enter positive number value in all input fields.")
+    }
+    else{
+        const savingAmount=incomeInputValue*(saveInputValue/100);       
+        remainingBalance(savingAmount);
+    }
+    
 }
 
 //remaining balance calculation
 function remainingBalance(savingAmount){
     const remainBalance=balance-savingAmount;
-    const setRemainingBalance=document.getElementById('remaining-balance');
-    setRemainingBalance.innerText=remainBalance;
+    if(remainBalance<0){
+        errorHandler("Saving can't be greater than balance.Please reload page & input again.");
+    }
+    else{
+        const setSavingAmount=document.getElementById('saving-amount');
+        setSavingAmount.innerText=savingAmount;
+        const setRemainingBalance=document.getElementById('remaining-balance');
+        setRemainingBalance.innerText=remainBalance;
+    }    
 }
 
 // calculate button 
